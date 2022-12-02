@@ -1,3 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;900&family=Roboto:wght@400;700&display=swap');
+
+/* Variables for colors */
+:root {
+    --bgblue: #d2e6f7;
+    --headerblue: #0074D9;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bgblue);
+    font-family: 'Roboto', sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Header Styling */
+header{
+    display: flex;
+    align-items: center;
+    background-color: var(--headerblue);
+    border-radius: 0 0 0 5em;
+    color: whitesmoke;
+    font-family: 'Nunito', sans-serif;
+}
+
+.main-title {
+    font-size: 2rem;
+    margin: 0.5em;
+}
+
+.prize-title {
+    font-size: 1rem;
+    margin: 1em;
+}
+
+.totals {
+    font-size: 0.75rem;
+}
+
+.helmi-img {
+    background-image: url("images/helmi.jpg");
+    width: 100px;
+    height: 100px;
+    margin-left: 1em;
+    background-size: cover;
+    background-position: center;
+    border: 0.2em solid whitesmoke;
+    border-radius: 50%;
+}
+
+.all-chores {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%
+
+}
+.chore {
+    width: 85%;
+    margin: 0.5em 0;
+    background-color: whitesmoke;
+    border-radius: 0.25em;
+}
+
+.chore-heading {
+    font-family: 'Nunito', sans-serif;
+}
+
+.timer {
+    align-items: flex-end;
+}
+
+/* Utility class for adding/removing display-none class using JS */
 .display-none {
     display: none;
 }

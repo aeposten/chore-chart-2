@@ -6,6 +6,7 @@ const choresEl = selectComponent("all-chores");
 const totalCountEl = selectComponent("total-count");
 const prizeEl = selectComponent("get-prize");
 
+//Renders chore HTML, function defined line 43
 renderChoreHTML();
 
 // Global variables to initialize timer
@@ -15,15 +16,14 @@ let seconds;
 let initialMinutes = 20;
 let totalSeconds = initialMinutes * 60;
 
+// Global variable for timer component
 const timerEl = selectComponent("timer");
+
+//sets initial time calculations, function defined line 160
 setTimeCalculations(totalSeconds);
+
+//Renders timer HTML, function defined line 101
 renderTimerHTML();
-
-// Global variables for timer elements
-const timerSpan = selectComponent("time");
-const startBtn = selectComponent("start-timer");
-
-// Global variables for minutes and seconds
 
 // Is timer paused?
 let paused = true;
@@ -123,7 +123,7 @@ function renderStartFunctionality() {
       timer = setInterval(countdown, 1000);
     }
   }
-  
+
   startBtn.addEventListener("click", startTimer);
 }
 
@@ -140,12 +140,12 @@ function renderPauseFunctionality() {
     }
   }
   pauseBtn.addEventListener("click", pauseTimer);
-
 }
 
 //renders functionality for reset button
 function renderResetFunctionality() {
   const resetBtn = selectComponent("reset-timer");
+
   function resetTimer() {
     paused = true;
     clearInterval(timer);
@@ -156,8 +156,7 @@ function renderResetFunctionality() {
   resetBtn.addEventListener("click", resetTimer);
 }
 
-
-
+// Calculates minutes, seconds, and total seconds based on initialized values
 function setTimeCalculations(totalSeconds) {
   minutes = Math.floor(totalSeconds / 60);
   seconds = totalSeconds % 60;

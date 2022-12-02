@@ -7,21 +7,26 @@
   </head>
   <body>
     <header>
-        <h1 class="main-title">
-            Helmi's Weekly Chore Chart
-        </h1>
-        <h2 class="prize-title">Complete 15 Chores Per Week to Get A Prize!</h2>
-        <img src="./images/helmi.jpeg" alt="Helmi looking at the camera smiling wearing red glasses and a dress with peacocks on it" class="helmi-img">
-        <div class="totals">Total Chores Completed: <span class="total-count" id="total-count"></span></div>
+      <div class="helmi-img"></div>
+      <div class="headers">
+        <h1 class="main-title">Helmi's Weekly Chore Chart</h1>
+        <h3 class="prize-title">Complete 15 Chores Per Week to Get A Prize!</h3>
         <div class="display-none" id="get-prize">See Mama for a Prize</div>
+      </div>
+      <div class="completed-chores">
+        <div class="totals">
+          Total Chores Completed:
+          <span class="total-count" id="total-count">0</span>
+        </div>
+      </div>
     </header>
     <main>
-        <section class="all-chores" id="all-chores">
-            <!-- All Chores Render Here -->
-        </section>
-        <section class="timer" id="timer">
-            <!-- Timer Renders Here -->
-        </section>
+      <section class="all-chores" id="all-chores">
+        <!-- All Chores Render Here -->
+      </section>
+      <section class="timer chore" id="timer">
+        <!-- Timer Renders Here -->
+      </section>
     </main>
   </body>
   <script type="module" src="index.js"></script>
