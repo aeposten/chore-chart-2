@@ -47,8 +47,8 @@ function renderChoreHTML() {
   const choreDivs = CHORES.map(
     ({ chore, name, count }, index) =>
       `<div class="chore">
-            <h3 class="chore-heading">${name}</h3><span class="count" id='count-${index}'>${count}</span><button
-            class='add-btn' id='add-${index}' data-increment='${index}'>Finish Chore</button><button class="reset-btn" data-reset='${index}'>Reset</button>
+            <div><h3 class="chore-heading">${name}<span class="count" id='count-${index}'>${count}</span></h3></div><div class="btns"><button
+            class='add-btn btn' id='add-${index}' data-increment='${index}'>Finish Chore</button><button class="reset-btn btn" data-reset='${index}'>Reset</button></div>
     </div>`
   );
   return (choresEl.innerHTML = choreDivs.join(""));
