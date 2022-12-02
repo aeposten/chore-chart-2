@@ -8,6 +8,8 @@ renderChoreHTML();
 document.addEventListener("click", function (e) {
   if (e.target.dataset.increment) {
     incrementCount(e.target.dataset.increment);
+  } else if  (e.target.dataset.reset) {
+    resetCount(e.target.dataset.reset);
   }
 });
 
@@ -16,7 +18,7 @@ function renderChoreHTML() {
     ({ chore, name, count }, index) =>
       `<div class="chore">
             <h3 class="chore-heading">${name}</h3><span class="count" id='count-${index}'>${count}</span><button
-            class='add-btn' id='add-${index}' data-increment='${index}'>Finish Chore</button><button class="reset-btn">Reset</button>
+            class='add-btn' id='add-${index}' data-increment='${index}'>Finish Chore</button><button class="reset-btn" data-reset='${index}'>Reset</button>
     </div>`
   );
   return (choresEl.innerHTML = choreDivs.join(""));
@@ -31,6 +33,18 @@ function incrementCount(choreIndex) {
   choreCountSpan.textContent = choreCount;
   CHORES[choreIndex].count = choreCount;
   calculateTotal(CHORES);
+}
+
+function resetCount(choreIndex) {
+  const choreCountSpan = document.getElementById(`count-${choreIndex}`);
+  let choreCount = CHORES[choreIndex].count;
+
+  choreCount = 0;
+
+  choreCountSpan.textContent = choreCount;
+  CHORES[choreIndex].count = choreCount;
+  calculateTotal(CHORES);
+
 }
 
 function calculateTotal(choreArr) {
