@@ -1,14 +1,15 @@
 import { chores } from "./data.js";
 const CHORES = chores;
 const choresEl = document.getElementById("all-chores");
-const totalCountEl = document.getElementById("total-count")
+const totalCountEl = document.getElementById("total-count");
+const prizeEl = document.getElementById("get-prize");
 
 renderChoreHTML();
 
 document.addEventListener("click", function (e) {
   if (e.target.dataset.increment) {
     incrementCount(e.target.dataset.increment);
-  } else if  (e.target.dataset.reset) {
+  } else if (e.target.dataset.reset) {
     resetCount(e.target.dataset.reset);
   }
 });
@@ -25,35 +26,40 @@ function renderChoreHTML() {
 }
 
 function incrementCount(choreIndex) {
-  const choreCountSpan = document.getElementById(`count-${choreIndex}`);
   let choreCount = CHORES[choreIndex].count;
 
   choreCount++;
 
-  choreCountSpan.textContent = choreCount;
-  CHORES[choreIndex].count = choreCount;
-  calculateTotal(CHORES);
+  updateChoreCount(choreIndex, choreCount);
 }
 
 function resetCount(choreIndex) {
-  const choreCountSpan = document.getElementById(`count-${choreIndex}`);
   let choreCount = CHORES[choreIndex].count;
 
   choreCount = 0;
+  updateChoreCount(choreIndex, choreCount);
+}
+
+function updateChoreCount(choreIndex, choreCount) {
+  const choreCountSpan = document.getElementById(`count-${choreIndex}`);
 
   choreCountSpan.textContent = choreCount;
   CHORES[choreIndex].count = choreCount;
   calculateTotal(CHORES);
-
 }
 
 function calculateTotal(choreArr) {
-    let total = 0;
+  let total = 0;
 
-    for (let i = 0; i < choreArr.length; i++) {
-        total += choreArr[i].count;
-    }
+  for (let i = 0; i < choreArr.length; i++) {
+    total += choreArr[i].count;
+  }
 
-    totalCountEl.textContent = total;
+  totalCountEl.textContent = total;
+
+  if (total < 15) {
+    prizeEl.classList.add("display-none");
+  } else if (total >= 15) {
+    prizeEl.classList.remove("display-none");
+  }
 }
-
