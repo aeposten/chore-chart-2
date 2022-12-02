@@ -10,24 +10,23 @@ renderChoreHTML();
 
 // Global variables to initialize timer
 let timer;
-const timerEl = selectComponent("timer");
+let minutes;
+let seconds;
+let initialMinutes = 20;
+let totalSeconds = initialMinutes * 60;
 
+const timerEl = selectComponent("timer");
+setTimeCalculations(totalSeconds);
 renderTimerHTML();
 
 // Global variables for timer elements
 const timerSpan = selectComponent("time");
 const startBtn = selectComponent("start-timer");
-const pauseBtn = selectComponent("pause-timer");
-const resetBtn = selectComponent("reset-timer");
 
 // Global variables for minutes and seconds
-let initialMinutes = 20;
-let totalSeconds = initialMinutes * 60;
 
 // Is timer paused?
 let paused = true;
-
-
 
 //Gets component by id
 function selectComponent(elementId) {
@@ -100,61 +99,81 @@ function calculateTotal(choreArr) {
 
 // Renders HTML for timer
 function renderTimerHTML() {
+  setTimeCalculations(totalSeconds);
   timerEl.innerHTML = `
   <h3>Chore Timer</h3>
   <div>
-      <span id="time">20:00</span><button class="btn" id="start-timer">Start Timer</button>
+      <span id="time">${minutes} : ${seconds}</span><button class="btn" id="start-timer">Start Timer</button>
       <button class="btn" id="pause-timer">Pause Timer</button><button class="btn" id="reset-timer">Reset Timer</button>
   </div>
   `;
+
+  renderStartFunctionality();
+  renderPauseFunctionality();
+  renderResetFunctionality();
 }
 
-// Sets initial time calculations
-function setTimeCalculations() {
-  let minutes = Math.floor(totalSeconds / 60);
-  let seconds = totalSeconds % 60;
+//Renders functionality for start button
+function renderStartFunctionality() {
+  const startBtn = selectComponent("start-timer");
 
-  timerSpan.textContent = `${minutes}:${(seconds =
-    seconds < 10 ? "0" + seconds : seconds)}`;
-}
-
-//Starts Timer
-function startTimer() {
-  if (paused) {
-    paused = false;
-    timer = setInterval(countdown, 1000);
+  function startTimer() {
+    if (paused) {
+      paused = false;
+      timer = setInterval(countdown, 1000);
+    }
   }
+  
+  startBtn.addEventListener("click", startTimer);
 }
 
-startBtn.addEventListener("click", startTimer);
+// renders functionality for pause button
+function renderPauseFunctionality() {
+  const pauseBtn = selectComponent("pause-timer");
+  function pauseTimer() {
+    renderTimerHTML();
+    setTimeCalculations(totalSeconds);
+    paused = true;
 
-//Pauses Timer
-function pauseTimer() {
-  paused = true;
-  if (timer) {
+    if (timer) {
+      clearInterval(timer);
+    }
+  }
+  pauseBtn.addEventListener("click", pauseTimer);
+
+}
+
+//renders functionality for reset button
+function renderResetFunctionality() {
+  const resetBtn = selectComponent("reset-timer");
+  function resetTimer() {
+    paused = true;
     clearInterval(timer);
+    totalSeconds = initialMinutes * 60;
+    renderTimerHTML();
   }
+
+  resetBtn.addEventListener("click", resetTimer);
 }
 
-pauseBtn.addEventListener("click", pauseTimer);
 
-//Resets Timer
-function resetTimer() {
-  paused = true;
-  clearInterval(timer);
-  totalSeconds = initialMinutes * 60;
-  timerSpan.textContent = `${initialMinutes}:00`;
+
+function setTimeCalculations(totalSeconds) {
+  minutes = Math.floor(totalSeconds / 60);
+  seconds = totalSeconds % 60;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  return minutes, seconds, totalSeconds;
 }
-
-resetBtn.addEventListener("click", resetTimer);
 
 //Starts Countdown
 function countdown() {
   totalSeconds--;
-  setTimeCalculations();
 
   if (totalSeconds === 0) {
     paused = true;
     clearInterval(timer);
   }
+
+  renderTimerHTML();
 }
