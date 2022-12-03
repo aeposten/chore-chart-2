@@ -101,11 +101,9 @@ function calculateTotal(choreArr) {
 function renderTimerHTML() {
   setTimeCalculations(totalSeconds);
   timerEl.innerHTML = `
-  <h3>Chore Timer</h3>
-  <div>
-      <span id="time">${minutes} : ${seconds}</span><button class="btn" id="start-timer">Start Timer</button>
-      <button class="btn" id="pause-timer">Pause Timer</button><button class="btn" id="reset-timer">Reset Timer</button>
-  </div>
+  <div>Chore Timer</div>
+      <span id="time">${minutes} : ${seconds}</span><button class="timer-btn" id="start-timer">Start</button>
+      <button class="timer-btn" id="pause-timer">Pause</button><button class="timer-btn" id="reset-timer">Reset</button>
   `;
 
   renderStartFunctionality();
