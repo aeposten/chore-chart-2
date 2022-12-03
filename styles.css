@@ -101,6 +101,7 @@ header{
     color: whitesmoke;
     border: none;
     border-radius: 1.5em;
+    cursor: pointer;
 }
 
 .btns {
@@ -127,6 +128,7 @@ header{
     font-family: 'Roboto', sans-serif;
     border: none;
     border-radius: 1em;
+    cursor: pointer;
 }
 
 /* Utility class for adding/removing display-none class using JS */
